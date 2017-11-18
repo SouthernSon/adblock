@@ -13,8 +13,7 @@ wget -O - http://www.malwaredomainlist.com/hostslist/hosts.txt
 } > $TMPPATH
 
 #Format downloaded lists for hosts file.
-#UUOC, don't care. Change if you like.
-cat $TMPPATH | sed 's/127.0.0.1/0.0.0.0/g' | grep 0.0.0.0 | grep -v localhost | sed -e 's/#.*$//' | sort | uniq -u > $HOSTPATH
+sed -e 's/#.*$//' -e 's/127.0.0.1/0.0.0.0/g' | grep 0.0.0.0 | grep -v localhost | sort | uniq -u > $HOSTPATH
 
 rm $TMPPATH
 
